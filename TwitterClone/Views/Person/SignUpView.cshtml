@@ -1,0 +1,89 @@
+﻿@model TwitterClone.Models.Person
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>SignUpView</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-image:repeating-radial-gradient();
+        }
+/*form {border: 3px solid #f1f1f1;}*/
+
+input[type=text], input[type=password] {
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    width:250px;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 7px 10px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+
+.container {
+    padding: 16px;
+}
+
+span.psw {
+    float: right;
+    padding-top: 16px;
+}
+
+
+    </style>
+</head>
+<body style="margin-left: 250px; background-image: url('gradient_bg.png');">
+    <script src="~/Scripts/jquery-1.8.2.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+    @using (Html.BeginForm())
+    {
+         <h2>Join My twitter clone</h2>
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+
+        <div class="container" style="margin-top:20px; width:400px;">
+            <fieldset  style="width:440px;background-color:transparent;padding-left:50px;padding-top:20px;">
+                <legend>Your Details</legend>
+                <label for="uname"><b>Username: </b></label>&nbsp;
+                <input type="text" placeholder="CTSFSD" name="uname" disabled />
+                <br />
+                <label for="psw"><b>Password: </b></label>&nbsp;
+                <input type="password" placeholder="Enter Password" name="psw" /> 
+                <br /> 
+                <label for="uname"><b>Full Name: </b></label>&nbsp;
+                <input type="text" placeholder="Enter Full Name" name="fullname" />
+                <br />
+                <label for="psw"><b>Email: </b></label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="text" placeholder="Enter Email" name="Email" />
+                <br />             
+                @*<button type="submit" style="margin-left:280px;">SignUp</button>*@
+                <button type="submit">Update</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="submit" style="background-color: orangered;">Delete</button>
+                    <br /><br />   
+               
+            </fieldset>
+  </div> 
+    }
+</body>
+</html>

@@ -1,0 +1,107 @@
+﻿@model IEnumerable<TwitterClone.Models.Tweet>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>TweetsView</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        .column {
+            float: left;
+            padding: 5px;
+            /*height: 300px;*/ 
+        }
+
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+        .button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 7px 10px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+        }
+        tr:nth-child(even) {
+            background: #CCC;
+        }
+
+        tr:nth-child(odd) {
+            background: #FFF;
+        }
+    </style>
+</head>
+<body style="width:80%">
+    <div class="row" style="margin-left:30px;">
+        @{
+            var userTweet = ViewBag.userTweet;
+        }
+        
+        <div class="column" style="width: 25%; border-radius:12px;height:600px;background-color:cadetblue;">
+            <div class="row">
+                <br /><br /><br /><br />  
+            </div>
+            <div class="row">
+                <h3>Follow</h3>
+                <input type="text" placeholder="Search Person" name="searchname" /> <br /><br /><br /><br />
+            </div>
+            <div class="row">
+                <a href="/Person/Index">@userTweet.TotalTweets</a>&nbsp;<label>Tweets</label> <br /><br />
+                <a href="/Person/Index">@userTweet.FollowerTweets</a>&nbsp;<label>Following</label> <br /><br />
+                <a href="/Person/Index">@userTweet.FollowingTweets</a>&nbsp;<label>Followers</label> <br /><br />
+            </div>
+        </div>
+        <div class="column" style="width: 75%; border-radius: 12px; height: 600px; background-color: cadetblue;">
+            <div class="row">
+                <div class="column" style="width:40%"><h2>My Twitter Clone</h2></div>
+                <div class="column" style="width:30%"><label>welcome @userTweet.fullName !!</label></div>
+                <div class="column" style="width:10%"><a href="#">Home</a>&nbsp;&nbsp;<label>|</label></div>
+                <div class="column" style="width:10%"><a href="/Person/Index">Profile</a>&nbsp;&nbsp;<label>|</label>&nbsp;&nbsp;</div>
+                <div class="column" style="width:10%"><a href="login.aspx">Signout</a>&nbsp;</div>
+            </div>
+            <div class="row" style="height:120px;">
+                <h4>what are you doing?</h4>
+                <textarea name="message" rows="4" cols="90">Though of the Day!!</textarea><br />
+                <input type="submit" value="Update" class="button" style="margin-left:680px;" />
+            </div>
+            <div class="row">
+                <h4>Tweets</h4>
+                <fieldset style="width:740px;background-color:transparent;">
+                      <table class="table table-bordered table-hover">
+                        <tbody class="tbody">
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td style="width:15%;padding:10px;">
+                                        @Html.DisplayFor(modelItem => item.user_id)
+                                    </td>
+                                    <td style="width: 75%;padding:10px;">
+                                        @Html.DisplayFor(modelItem => item.message)
+                                    </td>
+                                    <td style="width: 10%; padding: 10px;">
+                                        @Html.DisplayFor(modelItem => item.created)
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+
+                    </table>
+                </fieldset>
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>
